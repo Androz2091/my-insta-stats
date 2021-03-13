@@ -223,6 +223,11 @@ estree-walker@^2.0.1:
   resolved "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
 
+fflate@^0.6.7:
+  version "0.6.7"
+  resolved "https://registry.npmjs.org/fflate/-/fflate-0.6.7.tgz#fc1e8ea830b7f6f42ce1504f907d8f02aa0c8126"
+  integrity sha512-vQzKXPxs2pGPAI1jBj1c0cix/3lJjZJVgMBwwjDrReumnVU4PDSYnermp0WGek/n+gCCr3ZFdYEQO0CZ32anhw==
+
 fill-range@^7.0.1:
   version "7.0.1"
   resolved "https://registry.npmjs.org/fill-range/-/fill-range-7.0.1.tgz#1919a6a7c75fe38b2c7c77e5198535da9acdda40"

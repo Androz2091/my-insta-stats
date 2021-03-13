@@ -5,7 +5,7 @@
 	import Loader from './views/Loader.svelte';
 </script>
 
-<main>
+<main class="app">
 	{#if $loaded}
 		<Home />
 	{:else}
@@ -14,4 +14,8 @@
 </main>
 
 <style>
+	.app {
+		width: 100vw;
+		height: 100vh;
+	}
 </style>
