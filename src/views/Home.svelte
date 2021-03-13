@@ -1,7 +1,44 @@
 <script>
     import { data } from '../app/store';
+import Card from '../components/Card.svelte';
+import FunFact from '../components/FunFact.svelte';
 </script>
 
-<div>
-    <h1>Vous avez liké {$data.likes} posts!</h1>
+<div class="statistics">
+    <div class="cards">
+        <Card name="profile">
+            <FunFact
+                content="You liked % Instagram posts"
+                svg="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+                count={ $data.likeCount }
+                explanation="That's about { $data.likeCountPerDay } likes per day!"
+            />
+            <FunFact
+                content="You sent % messages on Instagram"
+                svg="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                count={ $data.messageCount }
+                explanation="That's about { $data.messageCountPerDay } messages per day!"
+            />
+        </Card>
+        <Card name="first">
+            <h3>Vous avez liké {$data.likes} posts!</h3>
+        </Card>
+        <Card name="second">
+            <h3>Vous avez liké {$data.likes} posts!</h3>
+        </Card>
+    </div>
 </div>
+
+<style>
+    h3 {
+		margin: 0;
+	}
+    .statistics {
+        color: white;
+        padding: 20px;
+    }
+    .cards {
+        display: grid;
+        grid-gap: 10px;
+    }
+</style>

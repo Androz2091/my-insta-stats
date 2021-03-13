@@ -5,3 +5,7 @@ body {
     margin: 0;
     padding: 0;
 }
+
+.text-highlight {
+    color: #FFC75F;
+}

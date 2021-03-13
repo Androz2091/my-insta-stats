@@ -1,9 +1,15 @@
 import { DecodeUTF8 } from 'fflate';
+import { loadTask } from './store';
 
 export const extractData = async (files) => {
 
     const extractedData = {
-        likes: 0
+        likeCount: 0,
+        likeCountPerDay: 0,
+
+        messageCount: 0,
+        messageCountPerDay: 0,
+        channels: []
     };
 
     const getFile = (name) => files.find((file) => file.name === name);
@@ -25,10 +31,43 @@ export const extractData = async (files) => {
         });
     };
 
+    const accountCreationData = JSON.parse(await readFile('login_and_account_creation/signup_information.json')).account_history_registration_info[0].string_map_data;
+    const accountCreationTimestamp = accountCreationData[Object.keys(accountCreationData)[2]].timestamp * 1000;
+    const accountUsername = accountCreationData[Object.keys(accountCreationData)[0]].value;
+
     console.log('[debug] Reading likes...');
+    loadTask.set('Loading likes...');
     const likes = JSON.parse(await readFile('likes/liked_posts.json'));
-    extractedData.likes = likes.likes_media_likes.length;
+    extractedData.likeCount = likes.likes_media_likes.length;
+    extractedData.likeCountPerDay = Math.ceil(extractedData.likeCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
     console.log('[debug] Likes read.');
+
+    console.log('[debug] Loading messages...');
+    loadTask.set('Loading messages...');
+    const groups = files.filter((f) => /messages\/inbox\/[a-zA-Z0-9-_]+\/message_1\.json/.test(f.name));
+    const groupsPromises = groups.map((group) => {
+
+        return new Promise((resolve) => {
+            const [,groupName] = group.name.match(/messages\/inbox\/([a-zA-Z0-9-_]+)\/message_1\.json/);
+            readFile(`messages/inbox/${groupName}/message_1.json`).then((content) => {
+
+                const data = JSON.parse(content);
+                const messageCount = data.messages.filter((s) => s.sender_name === accountUsername).length;
+                extractedData.channels.push({
+                    count: messageCount,
+                    isDM: data.participants.length === 2
+                });
+                extractedData.messageCount += messageCount;
+                resolve();
+
+            });
+        });
+
+    });
+
+    await Promise.all(groupsPromises);
+    console.log(accountCreationTimestamp)
+    extractedData.messageCountPerDay = Math.ceil(extractedData.messageCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
 
     return extractedData;
 };

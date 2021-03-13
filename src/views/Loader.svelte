@@ -56,7 +56,7 @@
 
 <div class="loader" style="{!loading && 'cursor: pointer;'} text-align: center" on:click="{filePopup}">
     {#if loading}
-        <h2>{loadTask || 'En cours de chargement...'}</h2>
+        <h2>{$loadTask || 'En cours de chargement...'}</h2>
     {:else if error}
         <h2 style="color: red">Une erreur est survenue... Réessayez !</h2>
     {:else}
@@ -76,6 +76,5 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background: radial-gradient(circle at 30% 190%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
     }
 </style>
