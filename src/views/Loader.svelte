@@ -1,7 +1,10 @@
 <script>
-    import { Unzip, AsyncUnzipInflate, DecodeUTF8 } from 'fflate';
+    import { loadTask, data, loaded } from '../app/store';
+    import { Unzip, AsyncUnzipInflate } from 'fflate';
+    import { extractData } from '../app/extractor';
 
     let loading = false;
+    let error = false;
 
     async function handleFile (file) {
         loading = true;
@@ -20,7 +23,7 @@
                 uz.push(value.subarray(i, i + 65536));
             }
         }
-        const validPackage = files.some((file) => file.name === 'content');
+        const validPackage = files.some((file) => file.name.startsWith('comments'));
         if (!validPackage) {
             error = true;
             loading = false;
@@ -51,13 +54,15 @@
     }
 </script>
 
-<div class="loader" style="{!loading && 'cursor: pointer'}" on:click="{filePopup}">
+<div class="loader" style="{!loading && 'cursor: pointer;'} text-align: center" on:click="{filePopup}">
     {#if loading}
-        <h1>En cours de chargement...</h1>
+        <h2>{loadTask || 'En cours de chargement...'}</h2>
+    {:else if error}
+        <h2 style="color: red">Une erreur est survenue... Réessayez !</h2>
     {:else}
-        <div style="text-align: center;">
+        <div>
             <h1>Cliquez ici pour charger votre fichier</h1>
-            <small style="display: block;">Pour télécharger votre fichier, ouvrez les paramètres Instagram et chercher "Télécharger mes données". Vous pourrez rentrer votre email et recevoir votre fichier !</small>
+            <p style="display: block;">Pour télécharger votre fichier, ouvrez les paramètres Instagram et chercher "Télécharger mes données". Vous pourrez rentrer votre email et recevoir votre fichier !</p>
         </div>
     {/if}
 </div>
