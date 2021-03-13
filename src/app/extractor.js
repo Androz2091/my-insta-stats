@@ -9,7 +9,9 @@ export const extractData = async (files) => {
 
         messageCount: 0,
         messageCountPerDay: 0,
-        channels: []
+        channels: [],
+
+        topics: []
     };
 
     const getFile = (name) => files.find((file) => file.name === name);
@@ -66,8 +68,10 @@ export const extractData = async (files) => {
     });
 
     await Promise.all(groupsPromises);
-    console.log(accountCreationTimestamp)
     extractedData.messageCountPerDay = Math.ceil(extractedData.messageCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
+
+    const yourTopics = JSON.parse(await readFile('your_topics/your_topics.json')).topics_your_topics.map((t) => t.string_map_data[Object.keys(t.string_map_data)[0]].value);
+    extractedData.topics = yourTopics;
 
     return extractedData;
 };

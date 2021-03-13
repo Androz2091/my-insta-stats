@@ -21,10 +21,17 @@ import FunFact from '../components/FunFact.svelte';
             />
         </Card>
         <Card name="first">
-            <h3>Vous avez liké {$data.likes} posts!</h3>
         </Card>
         <Card name="second">
-            <h3>Vous avez liké {$data.likes} posts!</h3>
+        </Card>
+        <Card name="words">
+            <h3>What Instagram thinks you like</h3>
+            <p>Instagram will try to suggest these types of content.</p>
+            <ul>
+                {#each $data.topics as topic}
+                    <li>{ topic }</li>
+                {/each}
+            </ul>
         </Card>
     </div>
 </div>

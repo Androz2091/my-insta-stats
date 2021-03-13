@@ -5,7 +5,11 @@ let loadedValue = false, dataValue = null;
 if (window.location.href.includes('demo')) {
     loadedValue = true;
     dataValue = {
-        likes: 2
+        likeCount: 300,
+        likeCountPerDay: 12,
+        messageCount: 3000,
+        messageCountPerDay: 20,
+        topics: new Array(20).fill(null).map((e) => 'Cats')
     };
 }
 

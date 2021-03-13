@@ -17,6 +17,5 @@
 	.app {
 		width: 100vw;
 		height: 100vh;
-        background: rgb(201, 174, 230);
 	}
 </style>
