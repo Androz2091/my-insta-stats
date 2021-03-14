@@ -54,26 +54,32 @@
     }
 </script>
 
-<div class="loader" style="{!loading && 'cursor: pointer;'} text-align: center" on:click="{filePopup}">
-    {#if loading}
-        <h2>{$loadTask || 'En cours de chargement...'}</h2>
-    {:else if error}
-        <h2 style="color: red">Une erreur est survenue... Réessayez !</h2>
-    {:else}
-        <div>
-            <h1>Cliquez ici pour charger votre fichier</h1>
-            <p style="display: block;">Pour télécharger votre fichier, ouvrez les paramètres Instagram et chercher "Télécharger mes données". Vous pourrez rentrer votre email et recevoir votre fichier !</p>
-        </div>
-    {/if}
+<div class="loader">
+    <div class="center" style="{!loading && 'cursor: pointer;'} text-align: center" on:click="{filePopup}">
+        {#if loading}
+            <h2>{$loadTask || 'En cours de chargement...'}</h2>
+        {:else if error}
+            <h2 style="color: red">Une erreur est survenue... Réessayez !</h2>
+        {:else}
+            <div>
+                <h1>Click here to load your file</h1>
+                <p style="display: block;">To download your file, open Instagram settings and search for "Download my data". You will be able to enter your email and receive your file!</p>
+            </div>
+        {/if}
+    </div>
 </div>
 
 <style>
     .loader {
         color: white;
-        text-shadow: 0px 3px 10px rgba(0,0,0,.25);;
+        text-shadow: 0px 3px 10px rgba(0,0,0,.25);
         height: 100%;
         width: 100%;
+    }
+    .center {
         display: flex;
+        height: 100%;
+        width: 100%;
         align-items: center;
         justify-content: center;
     }

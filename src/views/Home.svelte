@@ -27,7 +27,7 @@ import FunFact from '../components/FunFact.svelte';
         <Card name="words">
             <h3>What Instagram thinks you like</h3>
             <p>Instagram will try to suggest these types of content.</p>
-            <ul>
+            <ul style="column-count: 3;">
                 {#each $data.topics as topic}
                     <li>{ topic }</li>
                 {/each}

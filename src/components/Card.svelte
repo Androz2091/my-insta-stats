@@ -8,7 +8,7 @@
 
 <style>
     .card {
-        background-color: #845EC2;
+        background-color: #35435d;
         border-radius: 10px;
         padding: 20px;
     }
@@ -25,9 +25,8 @@
         .card.third {
             grid-column: 6 / 12;
         }
-        .card.top-users {
-            grid-column: 1 / 6;
-            grid-row: 2 / 5;
+        .card.words {
+            grid-column: 1 / 12;
         }
         .card.hours {
             grid-column: 6 / 12;

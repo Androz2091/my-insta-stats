@@ -1,12 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Quicksand', sans-serif !important;
     margin: 0;
     padding: 0;
-    background: #B39CD0;
+    background: #4C6085;
+}
+
+body * {
+    color: #dbdfe6;
 }
 
 .text-highlight {
-    color: #FFC75F;
+    color: white;
 }
