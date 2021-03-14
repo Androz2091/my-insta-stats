@@ -1,7 +1,9 @@
 <script>
     import { data } from '../app/store';
-import Card from '../components/Card.svelte';
-import FunFact from '../components/FunFact.svelte';
+    import Card from '../components/Card.svelte';
+    import FunFact from '../components/FunFact.svelte';
+    import Leaderboard from '../components/Leaderboard.svelte';
+    import LeaderboardItem from '../components/LeaderboardItem.svelte';
 </script>
 
 <div class="statistics">
@@ -27,6 +29,14 @@ import FunFact from '../components/FunFact.svelte';
             />
         </Card>
         <Card name="first">
+            <Leaderboard title="Top Chats" description="The chats you send the most messages in">
+                <LeaderboardItem
+                    username="Androz"
+                    count={100}
+                    position={1}
+                    avatarURL="https://www.mgretails.com/assets/img/default.png"
+                />
+            </Leaderboard>
         </Card>
         <Card name="second">
         </Card>
