@@ -42,7 +42,6 @@ export const extractData = async (files) => {
 
     const accountCreationData = JSON.parse(await readFile('login_and_account_creation/signup_information.json')).account_history_registration_info[0].string_map_data;
     const accountCreationTimestamp = accountCreationData[Object.keys(accountCreationData)[2]].timestamp * 1000;
-    const accountUsername = accountCreationData[Object.keys(accountCreationData)[0]].value;
 
     console.log('[debug] Reading likes...');
     loadTask.set('Loading likes...');
@@ -70,6 +69,7 @@ export const extractData = async (files) => {
     console.log('[debug] Loading messages...');
     loadTask.set('Loading messages...');
     const groups = files.filter((f) => /messages\/inbox\/[a-zA-Z0-9-_]+\/message_1\.json/.test(f.name));
+    const participants = [];
     const groupsPromises = groups.map((group) => {
 
         return new Promise((resolve) => {
@@ -77,12 +77,11 @@ export const extractData = async (files) => {
             readFile(`messages/inbox/${groupName}/message_1.json`).then((content) => {
 
                 const data = JSON.parse(content);
-                const messageCount = data.messages.filter((s) => s.sender_name === accountUsername).length;
+                participants.push(...data.participants.map((p) => p.name));
                 extractedData.channels.push({
-                    count: messageCount,
+                    messages: data.messages,
                     isDM: data.participants.length === 2
                 });
-                extractedData.messageCount += messageCount;
                 resolve();
 
             });
@@ -91,6 +90,12 @@ export const extractData = async (files) => {
     });
 
     await Promise.all(groupsPromises);
+    const probabAccountUsername = participants.sort((a, b) => participants.filter(v => v===a).length - participants.filter(v => v===b).length).pop();
+    extractedData.channels.forEach((chan) => {
+        const count = chan.messages.filter((m) => m.sender_name === probabAccountUsername).length;
+        extractedData.messageCount += count;
+    });
+
     extractedData.messageCountPerDay = Math.ceil(extractedData.messageCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
     console.log('[debug] Messages loaded.');
     
