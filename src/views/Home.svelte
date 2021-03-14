@@ -1,4 +1,5 @@
 <script>
+    import { fly } from 'svelte/transition';
     import { data } from '../app/store';
     import Card from '../components/Card.svelte';
     import FunFact from '../components/FunFact.svelte';
@@ -6,7 +7,8 @@
     import LeaderboardItem from '../components/LeaderboardItem.svelte';
 </script>
 
-<div class="statistics">
+<div class="statistics" transition:fly="{{ y: 200, duration: 1000 }}">
+    <h1 style="margin: 0; padding-bottom: 4px">MyInstaStats</h1><h3 style="padding-bottom: 10px">Your Instagram stats at a glance</h3>
     <div class="cards">
         <Card name="profile">
             <FunFact
@@ -29,13 +31,16 @@
             />
         </Card>
         <Card name="first">
-            <Leaderboard title="Top Chats" description="The chats you send the most messages in">
-                <LeaderboardItem
-                    username="Androz"
-                    count={100}
-                    position={1}
-                    avatarURL="https://www.mgretails.com/assets/img/default.png"
-                />
+            <Leaderboard title="Top Likes" description="The users you like the most">
+                {#each $data.topLikes as topLike, i}
+                    <LeaderboardItem
+                        username={topLike.username}
+                        count={topLike.count}
+                        position={i}
+                        avatarURL={topLike.avatarURL}
+                        type='likes'
+                    />
+                {/each}
             </Leaderboard>
         </Card>
         <Card name="second">

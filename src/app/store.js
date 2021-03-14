@@ -7,6 +7,7 @@ if (window.location.href.includes('demo')) {
     dataValue = {
         likeCount: 300,
         likeCountPerDay: 12,
+        topLikes: [],
         messageCount: 3000,
         messageCountPerDay: 20,
         topics: new Array(20).fill(null).map((e) => 'Cats')

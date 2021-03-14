@@ -3,6 +3,7 @@
     export let position;
     export let avatarURL;
     export let count;
+    export let type;
 </script>
 
 <div class="top-item">
@@ -12,7 +13,7 @@
         <h3 class="top-name">{username}</h3>
     </div>
     <div class="top-messages">
-        <h3>{count} <small>messages</small></h3>
+        <h3>{count} <small>{type}</small></h3>
     </div>
 </div>
 
