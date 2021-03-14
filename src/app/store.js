@@ -12,10 +12,10 @@ if (window.location.href.includes('demo')) {
         likeCount: 300,
         likeCountPerDay: 12,
         topLikes: ['levraimcfly', 'xsqueezie', 'alyciajasmin', 'katyperry', 'khloekardashian', 'nickiminaj', 'cristiano', 'arianagrande', 'therock', 'kyliejenner'].map((name) => ({
-            count: Math.ceil(Math.random() * 10000) + 1,
+            count: Math.ceil(Math.random() * 100) + 1,
             username: name,
             avatarURL: 'https://turtlegirltravel.com/wp-content/uploads/2020/11/profile.png'
-        })),
+        })).sort((a, b) => b.count - a.count),
         messageCount: 3000,
         messageCountPerDay: 20,
         commentCount: 100,

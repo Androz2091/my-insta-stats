@@ -13,7 +13,7 @@
         <h3 class="top-name">{username}</h3>
     </div>
     <div class="top-messages">
-        <h3>{count} <small>{type}</small></h3>
+        <h3>{count.toLocaleString('en-US')} <small>{type}</small></h3>
     </div>
 </div>
 
