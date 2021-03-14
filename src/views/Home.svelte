@@ -27,7 +27,7 @@
                 content="You posted % comments on Instagram"
                 svg="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z"
                 count={ $data.commentCount }
-                explanation="That's about { $data.commentCountPerDay } messages per day!"
+                explanation="That's about { $data.commentCountPerDay } comments per day!"
             />
         </Card>
         <Card name="leaderboard">
