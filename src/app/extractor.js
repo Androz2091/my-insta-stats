@@ -7,6 +7,9 @@ export const extractData = async (files) => {
         likeCount: 0,
         likeCountPerDay: 0,
 
+        commentCount: 0,
+        commentCountPerDay: 0,
+
         messageCount: 0,
         messageCountPerDay: 0,
         channels: [],
@@ -44,6 +47,8 @@ export const extractData = async (files) => {
     extractedData.likeCountPerDay = Math.ceil(extractedData.likeCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
     console.log('[debug] Likes read.');
 
+    console.log('[')
+
     console.log('[debug] Loading messages...');
     loadTask.set('Loading messages...');
     const groups = files.filter((f) => /messages\/inbox\/[a-zA-Z0-9-_]+\/message_1\.json/.test(f.name));
@@ -69,9 +74,19 @@ export const extractData = async (files) => {
 
     await Promise.all(groupsPromises);
     extractedData.messageCountPerDay = Math.ceil(extractedData.messageCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
+    console.log('[debug] Messages loaded.');
+    
+    console.log('[debug] Loading comments...');
+    const comments = JSON.parse(await readFile('comments/post_comments.json'));
+    extractedData.commentCount = comments.comments_media_comments.length;
+    extractedData.commentCountPerDay = Math.ceil(extractedData.commentCount / ((Date.now() - accountCreationTimestamp) / 1000 / 60 / 60 / 24));
+    console.log('[debug] Comments loaded');
 
+    console.log('[debug] Loading topics...');
+    loadTask.set('Loading topics...');
     const yourTopics = JSON.parse(await readFile('your_topics/your_topics.json')).topics_your_topics.map((t) => t.string_map_data[Object.keys(t.string_map_data)[0]].value);
     extractedData.topics = yourTopics;
+    console.log('[debug] Topics loaded');
 
     return extractedData;
 };
