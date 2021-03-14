@@ -13,11 +13,12 @@
         padding: 20px;
     }
     @media (min-width: 600px) {
-        .card.profile {
-            grid-column: 1 / 4;
+
+        .card.leaderboard {
+            grid-column: 1 / 3;
         }
-        .card.first {
-            grid-column: 4 / 8;
+        .card.profile {
+            grid-column: 2 / 12;
         }
         .card.second {
             grid-column: 8 / 12;

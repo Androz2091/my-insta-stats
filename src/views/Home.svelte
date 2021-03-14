@@ -30,7 +30,7 @@
                 explanation="That's about { $data.commentCountPerDay } messages per day!"
             />
         </Card>
-        <Card name="first">
+        <Card name="leaderboard">
             <Leaderboard title="Top Likes" description="The users you like the most">
                 {#each $data.topLikes as topLike, i}
                     <LeaderboardItem
@@ -42,8 +42,6 @@
                     />
                 {/each}
             </Leaderboard>
-        </Card>
-        <Card name="second">
         </Card>
         <Card name="words">
             <h3>What Instagram thinks you like</h3>
