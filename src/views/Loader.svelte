@@ -55,15 +55,18 @@
 </script>
 
 <div class="loader">
-    <div class="center" style="{!loading && 'cursor: pointer;'} text-align: center" on:click="{filePopup}">
+    <div class="center" style="{!loading && 'cursor: pointer;'} text-align: center;" on:click="{filePopup}">
         {#if loading}
-            <h2>{$loadTask || 'En cours de chargement...'}</h2>
+            <h2 style="color: #ffffff;">{$loadTask || 'Loading your data package...'}</h2>
         {:else if error}
-            <h2 style="color: red">Une erreur est survenue... Réessayez !</h2>
+            <div>
+                <h1 style="color: #ffe000;">An error occurred... File not properly formatted !</h1>
+                <p style="display: block; color: #ffe000;">Please make sure you selected the "json" option when requesting your data file on instagram desktop !</p>
+            </div>
         {:else}
             <div>
-                <h1>Click here to load your file</h1>
-                <p style="display: block;">To download your file, open Instagram settings and search for "Download my data". You will be able to enter your email and receive your file!</p>
+                <h1 style="color: #ffffff;">Click here to load your file</h1>
+                <p style="display: block; color: #ffffff">To download your file, open Instagram settings and search for "Download my data". You will be able to enter your email and receive your file!</p>
             </div>
         {/if}
     </div>
