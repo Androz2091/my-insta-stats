@@ -23,7 +23,7 @@
                 uz.push(value.subarray(i, i + 65536));
             }
         }
-        const validPackage = files.some((file) => file.name.startsWith('comments'));
+        const validPackage = files.some((file) => file.name.endsWith('json'));
         if (!validPackage) {
             error = true;
             loading = false;
