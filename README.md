@@ -1,17 +1,3 @@
-# My Insta Stats
+## DISCONTINUED
 
-**[LIVE VERSION](https://my-insta-stats.netlify.app)**
-
-My Insta Stats is a web app that allows you to explore the content of your Instagram data package (similar to [Discord Data Package Explorer](https://github.com/Androz2091/discord-data-package-explorer)).
-
-## 🚧 Under development
-
-This project is under development. It works, but there are a lot of things that can be improved. It is just a POC and feel free to make a PR or to fork the project to make something better. Plus, as I'm not an active user on Instagram, my package is almost empty so I can't test a lot of things...
-
-## Example
-
-**[DEMO](https://my-insta-stats.netlify.app/?demo)**
-
-![examplefun](./example-fun.png)
-
-![examplelikes](./example-likes.png)
+### **This project is discontinued in favor of [Instaddict](https://github.com/Androz2091/instaddict)**
